@@ -13,19 +13,14 @@ export default function useLenis() {
     if (reduce) return;
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => 1 - Math.pow(1 - t, 3), // easeOutCubic — smooth, no slow start
+      duration: 1.8,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
       smoothWheel: true,
+      lerp: 0.08,
     });
 
-    // Keep ScrollTrigger's notion of scroll position in sync with Lenis's
-    // virtual (transform-based) scroll — without this, scroll-triggered
-    // reveals can fire at the wrong point and feel glitchy.
     lenis.on("scroll", ScrollTrigger.update);
 
-    // GSAP's ticker reports time in SECONDS; Lenis expects MILLISECONDS.
-    // Feeding it raw seconds made Lenis think almost no time had passed
-    // each frame, which is what caused the slow/stuttery scroll.
     function raf(time) {
       lenis.raf(time * 1000);
     }

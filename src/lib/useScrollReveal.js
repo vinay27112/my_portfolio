@@ -4,9 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Animates every [data-reveal] element inside containerRef as it scrolls
-// into view. Elements with [data-reveal-group] get a staggered entrance
-// instead of animating one by one.
 export default function useScrollReveal(containerRef, deps = []) {
   useEffect(() => {
     const root = containerRef.current;
@@ -15,45 +12,48 @@ export default function useScrollReveal(containerRef, deps = []) {
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-
     const ctx = gsap.context(() => {
+      // Groups (stagger)
       const groups = root.querySelectorAll("[data-reveal-group]");
       groups.forEach((group) => {
         const items = group.querySelectorAll("[data-reveal]");
         if (!items.length) return;
         if (reduce) {
-          gsap.set(items, { opacity: 1, y: 0 });
+          gsap.set(items, { opacity: 1, y: 0, scale: 1 });
           return;
         }
-        gsap.set(items, { opacity: 0, y: 24 });
+        gsap.set(items, { opacity: 0, y: 40, scale: 0.94 });
         ScrollTrigger.batch(items, {
           start: "top 88%",
           onEnter: (batch) =>
             gsap.to(batch, {
               opacity: 1,
               y: 0,
-              duration: 0.6,
-              stagger: 0.08,
-              ease: "power2.out",
+              scale: 1,
+              duration: 0.8,
+              stagger: 0.12,
+              ease: "power3.out",
             }),
           once: true,
         });
       });
 
+      // Singles
       const singles = root.querySelectorAll(
         "[data-reveal]:not([data-reveal-group] [data-reveal])",
       );
       singles.forEach((el) => {
         if (reduce) {
-          gsap.set(el, { opacity: 1, y: 0 });
+          gsap.set(el, { opacity: 1, y: 0, scale: 1 });
           return;
         }
-        gsap.set(el, { opacity: 0, y: 24 });
+        gsap.set(el, { opacity: 0, y: 30, scale: 0.96 });
         gsap.to(el, {
           opacity: 1,
           y: 0,
-          duration: 0.7,
-          ease: "power2.out",
+          scale: 1,
+          duration: 0.8,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: el,
             start: "top 90%",
