@@ -1,9 +1,13 @@
 export const profile = {
   name: "Vinay Agarwal",
   role: "Full Stack & Web3 Developer",
-  tagline:
-    "I build systems that touch a chain — DeFi platforms, decentralized storage, and the plumbing underneath them.",
+  tagline1:
+    "Full stack by training, Web3 by curiosity. I build things that actually deploy — three live projects, real Sepolia transactions, zero vaporware.",
+  tagline2:
+    "I got into software because I liked seeing things work. That's stayed true — from a DeFi platform with eight microservices to a document vault that verifies files on-chain, I build things that run, not just things that look finished in a screenshot.",
   location: "Jaipur, India",
+  tagline3:
+    "I'm a third-year CS student who'd rather ship something real than talk about it — three of my projects are live right now, not just on GitHub. I work across the stack: React and Node on one end, Solidity and Sepolia on the other, with AI wired in wherever it earns its place.",
   education:
     "B.Tech Computer Science, JECRC University — 3rd year, CGPA 8.2/10",
   email: "vinayagarwal302@gmail.com",
@@ -754,3 +758,31 @@ export const internshipCertificate = {
   label: "Internship Certificate – NuraBytes",
   image: "/certificates/internship-certificate.png",
 };
+
+export const educationHistory = [
+  {
+    level: "B.Tech (Computer Science)",
+    institution: "JECRC University, Jaipur",
+    year: "2023 – Present",
+    cgpa: "8.2/10",
+    image: null, // will come later
+    status: "In progress",
+  },
+  {
+    level: "Class XII (PCM + Computer Science)",
+    institution: "Kendriya Vidyalaya, Mount Abu",
+    year: "2023",
+    percentage: "88.4%",
+    image: "/twelth.jpeg",
+    status: "Completed",
+  },
+  {
+    level: "Class X",
+    institution: "Kendriya Vidyalaya, Mount Abu",
+    year: "2021",
+    percentage: "87.6%",
+    // percentage: "XX%", // if you have, add it
+    image: "/tenth.jpeg",
+    status: "Completed",
+  },
+];

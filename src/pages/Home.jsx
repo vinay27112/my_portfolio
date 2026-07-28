@@ -10,6 +10,7 @@ import {
   experience,
   achievements,
   certificates,
+  educationHistory,
 } from "../data";
 import ProjectCard from "../components/ProjectCard.jsx";
 import TechBackground from "../components/TechBackground.jsx";
@@ -142,6 +143,7 @@ export default function Home() {
   const certsRef = useRef(null);
   const container3DRef = useRef(null);
   const floatingShapesRef = useRef([]);
+  const educationRef = useRef(null);
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -314,6 +316,7 @@ export default function Home() {
       finalCtaRef,
       achievementsRef,
       certsRef,
+      educationRef,
     ];
     sections.forEach((ref) => {
       if (ref.current) {
@@ -374,7 +377,7 @@ export default function Home() {
                 ref={descRef}
                 className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto md:mx-0 mt-4 leading-relaxed"
               >
-                {profile.tagline}
+                {profile.tagline1}
               </p>
 
               <div
@@ -439,7 +442,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: Image with particles (no border, no ring) */}
+            {/* Right: Image with particles */}
             <div
               ref={container3DRef}
               className="relative w-full md:w-1/2 h-[60vh] md:h-[80vh] flex items-center justify-center order-first md:order-last"
@@ -494,7 +497,7 @@ export default function Home() {
                 />
               </div>
 
-              {/* ===== NEW CAPTION ===== */}
+              {/* Caption */}
               <p className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-gray-400/70 italic z-20 whitespace-nowrap bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
                 Generated with AI · I liked it, so I kept it.
               </p>
@@ -534,7 +537,7 @@ export default function Home() {
                 About Me
               </h2>
               <p className="text-gray-200 text-lg leading-relaxed max-w-3xl">
-                {profile.tagline}
+                {profile.tagline2}
               </p>
               <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-300">
                 <span>📍 {profile.location}</span>
@@ -563,6 +566,80 @@ export default function Home() {
                 />
               </svg>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== COMPACT EDUCATION ===== */}
+      <section
+        ref={educationRef}
+        className="relative z-10 max-w-5xl mx-auto px-6 py-4"
+      >
+        <div className="bg-black/30 backdrop-blur-sm border border-white/5 rounded-xl p-4 shadow-2xl shadow-black/30">
+          <div className="flex items-center gap-2 mb-2">
+            <svg
+              className="w-4 h-4 text-cyan-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              />
+            </svg>
+            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+              Education
+            </h3>
+          </div>
+          <div className="flex flex-wrap items-center gap-4 text-sm">
+            {educationHistory.map((edu, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/5"
+              >
+                <span className="text-white font-medium">
+                  {edu.level.split("(")[0].trim()}
+                </span>
+                <span className="text-gray-400 text-xs">·</span>
+                <span className="text-cyan-400 text-xs">
+                  {edu.institution.split(",")[0]}
+                </span>
+                {edu.cgpa && (
+                  <span className="text-gray-300 text-xs">📊 {edu.cgpa}</span>
+                )}
+                {edu.percentage && (
+                  <span className="text-gray-300 text-xs">
+                    📈 {edu.percentage}
+                  </span>
+                )}
+                {edu.image && (
+                  <a
+                    href={edu.image}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block w-5 h-5 rounded overflow-hidden border border-white/10 hover:border-cyan-400/40 transition-all"
+                  >
+                    <img
+                      src={edu.image}
+                      alt={edu.level}
+                      className="w-full h-full object-cover"
+                    />
+                  </a>
+                )}
+                <span
+                  className={`text-[8px] px-1.5 py-0.5 rounded-full font-medium ${
+                    edu.status === "Completed"
+                      ? "bg-emerald-500/20 text-emerald-400"
+                      : "bg-amber-500/20 text-amber-400"
+                  }`}
+                >
+                  {edu.status}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
