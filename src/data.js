@@ -11,7 +11,7 @@ export const profile = {
   education:
     "B.Tech Computer Science, JECRC University — 3rd year, CGPA 8.2/10",
   email: "vinayagarwal302@gmail.com",
-  linkedin: "https://linkedin.com/in/vinay-agarwal",
+  linkedin: "https://linkedin.com/in/vinay-agarwal27",
   github: "https://github.com/vinay27112",
   leetcode: "https://leetcode.com/vinay27112",
 };
