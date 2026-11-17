@@ -50,7 +50,7 @@ export default function Contact() {
     },
     {
       label: "LinkedIn",
-      value: "linkedin.com/in/vinay-agarwal",
+      value: "linkedin.com/in/vinay-agarwal27",
       href: profile.linkedin,
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
